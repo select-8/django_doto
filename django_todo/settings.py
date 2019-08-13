@@ -83,7 +83,11 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 #     }
 # }
 
-DATABASES = {'default': dj_database_url.parse(os.getenv("DATABASE_URL"))}
+# DATABASES = {'default': dj_database_url.parse(os.getenv("DATABASE_URL"))}
+
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(default=os.environ['DATABASE_URL'])
+
 
 
 # Password validation
